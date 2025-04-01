@@ -1,14 +1,25 @@
-// src/App.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+  const [theme, setTheme] = useState('dark'); // "dark" or "light"
+  const [loading, setLoading] = useState(true);
   const [inviteCode, setInviteCode] = useState('');
   const [event, setEvent] = useState(null);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+
+  // Simulate loading delay
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
 
   const handleInviteSubmit = async (e) => {
     e.preventDefault();
@@ -52,10 +63,43 @@ function App() {
     }
   };
 
+  // Generate multiple random dots
+  const renderRandomDots = () => {
+    const dotCount = 10;
+    return Array.from({ length: dotCount }).map((_, index) => {
+      const top = Math.random() * 100 + '%';
+      const left = Math.random() * 100 + '%';
+      const delay = Math.random() * 5;
+      return (
+        <div
+          key={index}
+          className="random-dot"
+          style={{ top, left, animationDelay: `${delay}s` }}
+        ></div>
+      );
+    });
+  };
+
+  if (loading) {
+    return (
+      <div className={`container ${theme}-theme`}>
+        {renderRandomDots()}
+        <div className="spinner"></div>
+      </div>
+    );
+  }
+
   if (!event) {
     return (
-      <div className="container">
-        <h2>Please enter your invite code</h2>
+      <div className={`container ${theme}-theme`}>
+        {renderRandomDots()}
+        <button className="theme-toggle" onClick={toggleTheme}>
+          {theme === 'dark' ? '☀' : '☾'}
+        </button>
+        <h2 className="invite-text">
+          Please Enter Your Invite Code
+          <span className="blinking-underscore">_</span>
+        </h2>
         <form onSubmit={handleInviteSubmit}>
           <input
             type="text"
@@ -72,7 +116,11 @@ function App() {
   }
 
   return (
-    <div className="container">
+    <div className={`container ${theme}-theme`}>
+      {renderRandomDots()}
+      <button className="theme-toggle" onClick={toggleTheme}>
+        {theme === 'dark' ? '☀' : '☾'}
+      </button>
       <h2>{event.name}</h2>
       <img src={event.poster_image} alt="Event Poster" className="poster" />
       <p>{event.description}</p>

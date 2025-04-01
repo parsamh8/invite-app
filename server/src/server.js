@@ -1,11 +1,14 @@
-// server.js
 import express from 'express';
 import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';  // import fileURLToPath to recreate __dirname
 import sequelize from './config/connection.js';
 import { DataTypes, Model } from 'sequelize';
 
+// Recreate __dirname for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors());

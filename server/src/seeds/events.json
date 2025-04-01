@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Underground Techno Night",
+    "description": "Join us for a night of raw, unfiltered underground techno beats in an intimate venue.",
+    "poster_image": "https://i.pinimg.com/736x/26/ff/fc/26fffc9f0b7453939441d7357592c4c4.jpg",
+    "invite_code": "TECHNO2025"
+  },
+  {
+    "name": "After Dark Rave",
+    "description": "Experience an exclusive after dark rave with secret locations and special guest DJs.",
+    "poster_image": "https://i.pinimg.com/736x/c6/b9/af/c6b9afc10b7e2e424199cf9732282556.jpg",
+    "invite_code": "RAVE2025"
+  },
+  {
+    "name": "Industrial Techno Session",
+    "description": "A gritty industrial techno session that pushes boundaries and sparks creativity.",
+    "poster_image": "https://i.pinimg.com/736x/e0/9e/3a/e09e3a54f518466eb4d78d737e683191.jpg",
+    "invite_code": "INDUSTRY2025"
+  },{
+    "name": "SUNSET2SUNRISE",
+    "description":"As the sun dips below the horizon, its fiery hues yield to a gentle cascade of twilight, marking the beginning of a nocturnal symphony. \n \nThe sky, once ablaze with golden radiance, slowly transforms into a deep indigo canvas, sprinkled with emerging stars and the watchful glow of the moon.\nIn this quiet interlude, the world seems to hold its breath, inviting a reflective pause as shadows stretch and meld with the soft hum of nighttime whispers. \n \nFrom the vibrant farewell of sunset to the subtle promise of dawn, the journey through darkness is a serene passage of mystery and hope, where every twinkling light in the vast expanse heralds the imminent return of a new day. \n\n Date: 2025-10-20 \n\n Time: 10:00 PM - 6:00 AM \n\n Location: Secret Location (TBA)\n\n Lineup: Yukoncash, Ayaolah, DSM \n\n Tickets: $45 Early Bird, $65 General Admission",
+    "poster_image":"https://i.pinimg.com/736x/e0/8d/2d/e08d2d49edde296dd9f692901f6f072c.jpg",
+    "invite_code": "S2S2025"
+  }
+]
