@@ -132,6 +132,7 @@ app.post('/api/reserve', async (req, res) => {
   }
 });
 
+const PORT = process.env.PORT || 5000;
 
 sequelize
   .sync({ alter: true })
