@@ -24,7 +24,7 @@ function App() {
   const handleInviteSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/invite', {
+      const response = await fetch('/api/invite', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ inviteCode }),
