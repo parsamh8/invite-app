@@ -7,15 +7,6 @@ import sequelize from './config/connection.js';
 import { DataTypes, Model } from 'sequelize';
 
 
-// Serve static files from the front end build
-app.use(express.static(path.join(__dirname, '../../client/dist')));
-
-// Catch-all handler: for any request that doesn't match an API route,
-// send back index.html from your build so that your front end can handle routing.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
-});
-
 // Recreate __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -139,4 +130,14 @@ app.post('/api/reserve', async (req, res) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
+});
+
+
+// Serve static files from the front end build
+app.use(express.static(path.join(__dirname, '../../client/dist')));
+
+// Catch-all handler: for any request that doesn't match an API route,
+// send back index.html from your build so that your front end can handle routing.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
 });
