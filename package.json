@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:client": "cd client && npm run dev",
     "start:server": "cd server && npm run start",
+    "build:client": "cd client && npm run build",
     
     "start:dev": "concurrently \"npm run start:server\" \"npm run start:client",
     "start": "concurrently \"cd server/src && node server.js\" \"cd client && npm run dev\"",

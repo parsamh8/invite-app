@@ -6,6 +6,16 @@ import { fileURLToPath } from 'url';  // import fileURLToPath to recreate __dirn
 import sequelize from './config/connection.js';
 import { DataTypes, Model } from 'sequelize';
 
+
+// Serve static files from the front end build
+app.use(express.static(path.join(__dirname, '../../client/dist')));
+
+// Catch-all handler: for any request that doesn't match an API route,
+// send back index.html from your build so that your front end can handle routing.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
+});
+
 // Recreate __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
