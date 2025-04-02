@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // Define the Event model
-class Event extends Model {}
+class Event extends Model { }
 Event.init(
   {
     id: {
@@ -37,7 +37,7 @@ Event.init(
 );
 
 // Define the Reservation model
-class Reservation extends Model {}
+class Reservation extends Model { }
 Reservation.init(
   {
     id: {
@@ -133,10 +133,16 @@ app.post('/api/reserve', async (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+sequelize
+  .sync({ alter: true })
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server listening on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Error syncing database:', err);
+  });
 
 
 // Serve static files from the front end build

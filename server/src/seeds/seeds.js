@@ -1,4 +1,3 @@
-// seeds.js
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -10,7 +9,7 @@ import dotenv from 'dotenv';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load .env file from the same directory as seeds.js (adjust the path if needed)
+// Load .env file from the server root (adjust the path as needed)
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 // Define the Event model if not already defined
@@ -31,16 +30,18 @@ Event.init(
 
 async function seed() {
   try {
-    // This will drop and recreate the tables
-    await sequelize.sync({ force: true });
-
+    // Sync the database without forcing (this will create missing tables but won't drop existing ones)
+    await sequelize.sync();
+    
     // Read and parse events.json
     const eventsData = JSON.parse(
       fs.readFileSync(path.join(__dirname, 'events.json'), 'utf8')
     );
 
-    // Bulk insert events data
-    await Event.bulkCreate(eventsData);
+    // Bulk insert events data if not already inserted
+    // You can further check if the table is empty and only then insert data.
+    await Event.bulkCreate(eventsData, { ignoreDuplicates: true });
+    
     console.log('Seeding completed.');
     process.exit();
   } catch (error) {
