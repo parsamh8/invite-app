@@ -10,14 +10,13 @@
     
     "start": "concurrently \"npm run start:server\" \"npm run start:client",
     "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3001 && npm run client:dev\"",
+    "install-all": "concurrently \"cd server && npm run install\" \"cd client && npm run install\"",
     
     "server": "cd server && npm start:server",
     "server:dev": "cd server && npm run dev",
     "install": "cd server && npm i && cd ../client && npm i",
     "client:dev": "cd client && npm run dev",
-    "build": "cd server && npm run build",
-    "seed": "cd server && npm run seed",
-    "render-build": "npm install && npm run build"
+    "seed": "cd server && npm run seed"
   },
   "keywords": [],
   "author": "",

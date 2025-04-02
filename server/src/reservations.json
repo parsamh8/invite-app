@@ -33,5 +33,12 @@
     "first_name": "chaghalex",
     "last_name": "miran",
     "email": "chaghalex@yahoo.com"
+  },
+  {
+    "id": 8,
+    "event_id": 4,
+    "first_name": "ali",
+    "last_name": "mehrpour",
+    "email": "a.msackon@yahoo.com"
   }
 ]
