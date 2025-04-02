@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
 
   const handleInviteSubmit = async (e) => {
     e.preventDefault();
+    setMessage(''); // Clear previous message
     try {
       const response = await fetch('/api/invite', {
         method: 'POST',

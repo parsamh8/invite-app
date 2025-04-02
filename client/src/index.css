@@ -53,6 +53,7 @@ body, html {
 
 /* Blinking underscore */
 .blinking-underscore {
+  color: rgb(39, 165, 39);
   animation: blink 1s step-start infinite;
 }
 
