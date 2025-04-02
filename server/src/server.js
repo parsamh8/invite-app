@@ -107,15 +107,20 @@ app.post('/api/reserve', async (req, res) => {
       email: email,
     });
 
-    // Append the reservation to a JSON file
+    // Append the reservation to a JSON file, but do not fail if it errors
     const filePath = path.join(__dirname, 'reservations.json');
-    let reservationsData = [];
-    if (fs.existsSync(filePath)) {
-      const fileContent = fs.readFileSync(filePath, { encoding: 'utf8' });
-      reservationsData = JSON.parse(fileContent);
+    try {
+      let reservationsData = [];
+      if (fs.existsSync(filePath)) {
+        const fileContent = fs.readFileSync(filePath, { encoding: 'utf8' });
+        reservationsData = JSON.parse(fileContent);
+      }
+      reservationsData.push(reservation.toJSON());
+      fs.writeFileSync(filePath, JSON.stringify(reservationsData, null, 2));
+    } catch (fileErr) {
+      console.error('Error writing reservations file:', fileErr);
+      // You can choose to ignore the error or handle it in another way.
     }
-    reservationsData.push(reservation.toJSON());
-    fs.writeFileSync(filePath, JSON.stringify(reservationsData, null, 2));
 
     return res.json({
       message: 'Thanks for your submission. You are in waiting list',
@@ -126,6 +131,7 @@ app.post('/api/reserve', async (req, res) => {
     return res.status(500).json({ message: 'Server error' });
   }
 });
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
